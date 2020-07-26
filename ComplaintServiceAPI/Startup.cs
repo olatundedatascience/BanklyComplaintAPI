@@ -36,8 +36,9 @@ namespace ComplaintServiceAPI
                 .AddJwtBearer("Bearer", opts =>
                 {
                    // opts.ApiName = "complaintService";
-                    opts.Audience = "complaintService";
+                    
                     opts.Authority = "https://localhost:5001";
+                    opts.Audience = "complaintService";
                     
                     opts.SaveToken = true;
                     opts.RequireHttpsMetadata = false;

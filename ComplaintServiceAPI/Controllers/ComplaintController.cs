@@ -106,6 +106,7 @@ namespace ComplaintServiceAPI.Controllers
             }
         }
         
+        [Authorize]
         [Route(ApiRoutes.getAllComplaint)]
         [HttpGet]
         [ServiceFilter(typeof(HandleException))]
