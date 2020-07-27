@@ -18,6 +18,9 @@ namespace ComplaintServiceAPI
         public string emailAddress { get; set; }
         [Required]
         public string productName { get; set; }
+        [Required]
+        public bool status { get; set; }
+        
     }
     
     public interface ILoggerManager

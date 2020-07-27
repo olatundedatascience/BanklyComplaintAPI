@@ -5654,7 +5654,7 @@
   },
   "packageFolders": {
     "C:\\Users\\raimi.aliu\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -5667,7 +5667,7 @@
       "outputPath": "C:\\Users\\raimi.aliu\\RiderProjects\\BankllySecondPhaseInterview\\ComplaintServiceAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet",
+        "C:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [

@@ -29,7 +29,8 @@ namespace ComplaintServiceAPI.Controllers
             _apiResponse = _response;
         }
 
-
+        
+        [Authorize]
         [Route(ApiRoutes.updateComplaint)]
         [HttpPut]
         [ServiceFilter(typeof(HandleException))]
@@ -62,6 +63,7 @@ namespace ComplaintServiceAPI.Controllers
 
         }
 
+        [Authorize]
         [Route(ApiRoutes.deleteComplaint)]
         [HttpDelete]
         [ServiceFilter(typeof(HandleException))]
@@ -84,6 +86,7 @@ namespace ComplaintServiceAPI.Controllers
             }
         }
 
+        [Authorize]
         [Route(ApiRoutes.getComplaintById)]
         [HttpGet]
         [ServiceFilter(typeof(HandleException))]
@@ -107,13 +110,14 @@ namespace ComplaintServiceAPI.Controllers
         }
 
 
+        [Authorize]
         [Route(ApiRoutes.updateComplaintStatus)]
         [HttpPut]
         [ServiceFilter(typeof(HandleException))]
-        public async Task<IActionResult> updateTaskStatus([FromRoute] long Id, bool status)
+        public async Task<IActionResult> updateTaskStatus([FromRoute] long Id, [FromBody] ComplaintRequest status)
         {
             _logger.LogInformation($"update complaints status by Id input : {Id}, status: {status}");
-            var responseFromService = _service.updateStatus(Id, status);
+            var responseFromService = _service.updateStatus(Id, status.status);
             if (responseFromService)
             {
                 _logger.LogInformation($"response From Service:{responseFromService}");
@@ -142,7 +146,7 @@ namespace ComplaintServiceAPI.Controllers
             return Ok(response);
         }
         
-        //[Authorize]
+        [Authorize]
         [Route(ApiRoutes.registerComplaint)]
         [HttpPost]
         [ServiceFilter(typeof(HandleException))]

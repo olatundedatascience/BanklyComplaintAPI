@@ -37,6 +37,9 @@ namespace ComplaintServiceAPI.Migrations
                     b.Property<string>("productName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("status")
+                        .HasColumnType("bit");
+
                     b.Property<string>("subject")
                         .HasColumnType("nvarchar(max)");
 

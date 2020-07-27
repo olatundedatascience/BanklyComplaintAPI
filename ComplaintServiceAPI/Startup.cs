@@ -37,7 +37,7 @@ namespace ComplaintServiceAPI
                 {
                    // opts.ApiName = "complaintService";
                     
-                    opts.Authority = "https://localhost:5001";
+                    opts.Authority = "https://localhost:44390/";
                     opts.Audience = "complaintService";
                     
                     opts.SaveToken = true;
