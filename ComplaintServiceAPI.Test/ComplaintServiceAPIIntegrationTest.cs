@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using ComplaintServiceAPI.ApiRouteSettings;
@@ -32,6 +34,18 @@ namespace ComplaintServiceAPI.Test
                 });
 
             _client = appFactory.CreateClient();
+            
+            var dict = new Dictionary<string, string>();
+            dict.Add("client_id", "a01b443f-f6c5-4bec-8251-05b1b3b3fb06");
+            dict.Add("client_secret", "a01b443f-f6c5-4bec-8251-05b1b3b3fb06");
+            dict.Add("grant_type", "client_credentials");
+            var client = new HttpClient();
+            var req = new HttpRequestMessage(HttpMethod.Post, "https://localhost:44390/connect/token") { Content = new FormUrlEncodedContent(dict) };
+            var res = client.SendAsync(req).Result;
+            var contentResponse = res.Content.ReadAsStringAsync().Result;
+            var response = JsonConvert.DeserializeObject<AuthResponse>(contentResponse);
+            
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue($"Bearer", $"{response.access_token}");
         }
     }
     public class ComplaintServiceApiIntegrationTest : ComplaintServiceIntegrationBaseTest
