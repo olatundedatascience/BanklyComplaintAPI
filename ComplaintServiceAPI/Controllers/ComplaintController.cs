@@ -105,6 +105,28 @@ namespace ComplaintServiceAPI.Controllers
                 return NotFound(response);
             }
         }
+
+
+        [Route(ApiRoutes.updateComplaintStatus)]
+        [HttpPut]
+        [ServiceFilter(typeof(HandleException))]
+        public async Task<IActionResult> updateTaskStatus([FromRoute] long Id, bool status)
+        {
+            _logger.LogInformation($"update complaints status by Id input : {Id}, status: {status}");
+            var responseFromService = _service.updateStatus(Id, status);
+            if (responseFromService)
+            {
+                _logger.LogInformation($"response From Service:{responseFromService}");
+                var response = _apiResponse.GetApiResponse("success", "00", $"complaint with Id {Id} updated", null);
+                return Ok(response);
+            }
+            else
+            {
+                _logger.LogInformation($"response From Service:{responseFromService}");
+                var response = _apiResponse.GetApiResponse("failed", "99", $"complaint with Id {Id} could not be found or updatedd", null);
+                return NotFound(response);
+            }
+        }
         
         [Authorize]
         [Route(ApiRoutes.getAllComplaint)]

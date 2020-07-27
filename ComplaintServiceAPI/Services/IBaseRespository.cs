@@ -24,6 +24,7 @@ namespace ComplaintServiceAPI.Services
         Task<IEnumerable<Complaint>> GetAllComplaint(Func<Complaint, bool> predicate);
 
         Task<bool> update(long Id, Complaint complaint);
+        Task<bool> updateStatus(long Id, bool status);
     }
 
     public class BaseRepository : IBaseRespository
@@ -171,6 +172,30 @@ namespace ComplaintServiceAPI.Services
             
             updateTask.Start();
             return updateTask;
+        }
+
+        public Task<bool> updateStatus(long Id, bool status)
+        {
+            Task<bool> updateStatusTask = new Task<bool>(() =>
+            {
+                var complaintFromDB = _db.Complaints.SingleOrDefault(x => x.Id == Id);
+                //_db.Complaints.Update(complaint);
+
+                if (complaintFromDB != null)
+                {
+                    complaintFromDB.status = status;
+                    _db.Entry<Complaint>(complaintFromDB).State = EntityState.Modified; 
+                    dbResult = _db.SaveChanges() > 0;
+                    return dbResult;
+                }
+                else
+                {
+                    return false;
+                }
+
+            });
+            updateStatusTask.Start();
+            return updateStatusTask;
         }
     }
 }

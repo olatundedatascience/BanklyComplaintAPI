@@ -14,6 +14,7 @@ namespace ComplaintServiceAPI.Services
 
         bool DeleteComplaint(long Id);
         bool updateComplaint(long Id, Complaint complaint);
+        bool updateStatus(long Id, bool status);
 
         Complaint GetComplaintById(long Id);
         IEnumerable<Complaint> GetAll();
@@ -83,6 +84,20 @@ namespace ComplaintServiceAPI.Services
                 throw es;
             }
             
+        }
+
+        public bool updateStatus(long Id, bool status)
+        {
+            try
+            {
+                var result = _repo.updateStatus(Id, status).Result;
+
+                return result;
+            }
+            catch (Exception es)
+            {
+                throw es;
+            }
         }
 
         public Complaint GetComplaintById(long Id)

@@ -13,6 +13,7 @@ namespace ComplaintServiceAPI.ComplaintServiceAPIContext
         public string phoneNumber { get; set; }
         public string emailAddress { get; set; }
         public string productName { get; set; }
+        public bool status { get; set; }
     }
 
     public class ComplaintDbContext :DbContext

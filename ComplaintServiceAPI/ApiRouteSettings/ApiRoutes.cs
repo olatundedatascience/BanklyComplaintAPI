@@ -14,6 +14,7 @@ namespace ComplaintServiceAPI.ApiRouteSettings
             public const string getAllComplaint = url_format + "/allComplaints";
             public const string updateComplaint = url_format + "/updateComplaint/{Id}";
             public const string deleteComplaint = url_format + "/deleteComplaint/{Id}";
+            public const string updateComplaintStatus = url_format + "/updateComplaintStatus/{Id}";
         }
 
         public const string registerComplaint = ComplaintRegistration.registerComplaint;
@@ -21,7 +22,8 @@ namespace ComplaintServiceAPI.ApiRouteSettings
         public const string getComplaintById = ComplaintRegistration.getComplaint;
         public const string updateComplaint = ComplaintRegistration.updateComplaint;
         public const string deleteComplaint = ComplaintRegistration.deleteComplaint;
-        
+        public const string updateComplaintStatus = ComplaintRegistration.updateComplaintStatus;
+
     }
 
     public class ApiVersion
